@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/slick.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/slick-theme.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/nouislider.min.css"/>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<div id="cabecalho">
+    <div id="top-header">
+        <div class="container">
+            <ul class="header-links pull-right">
+                <li th:if="${usuario != null}">
+                    <i class="fa fa-user-o"></i>
+                    <a th:text="${usuario.username}"></a>
+                </li>
+                <li style="margin-left: 5px;">
+                    <img src="/img/Saida.svg" alt="Saida" style="margin-right: 5px" />
+                    <a th:href="@{/logout}">Sair</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="header-logo">
+                        <p style="color: white; font-size: 50px; font-weight: bold;">PREMIUM</p>
+                    </div>
+                </div>
+                <!-- conteudo central -->
+                <div class="col-md-6" style="margin-left: 20px"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/slick.min.js"></script>
+<script src="/js/nouislider.min.js"></script>
+<script src="/js/jquery.zoom.min.js"></script>
+<script src="/js/main.js"></script>
+
+</body>
+</html>

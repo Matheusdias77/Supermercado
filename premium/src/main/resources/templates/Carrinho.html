@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Carrinho</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/slick.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/slick-theme.css"/>
+    <link type="text/css" rel="stylesheet" href="/css/nouislider.min.css"/>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="/css/style.css"/>
+
+</head>
+<body>
+    <div th:insert="fragments/HeaderAuxiliar.html :: #cabecalho">
+        <!-- Div Produtos-->
+        <div class="cart-dropdown">
+            <div class="cart-list">
+                <div class="product-widget">
+                    <div class="product-img">
+                        <img src="./img/product01.png" alt="">
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                        <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
+                    </div>
+                    <button class="delete"><i class="fa fa-close"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav id="navigation">
+        <div class="container">
+            <div id="responsive-nav">
+                <ul class="main-nav nav navbar-nav">
+                    <li><a th:href="@{/publico/produtos}">Home</a></li>
+                    <li class="active"><a class="disabled">Meu Carrinho</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-xs-6">
+                    <div class="shop">
+                        <div class="shop-img">
+                            <img src="./img/shop01.png" alt="">
+                        </div>
+                        <div class="shop-body">
+                            <h3>Laptop<br>Collection</h3>
+                            <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-6">
+                    <div class="shop">
+                        <div class="shop-img">
+                            <img src="./img/shop03.png" alt="">
+                        </div>
+                        <div class="shop-body">
+                            <h3>Accessories<br>Collection</h3>
+                            <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-6">
+                    <div class="shop">
+                        <div class="shop-img">
+                            <img src="./img/shop02.png" alt="">
+                        </div>
+                        <div class="shop-body">
+                            <h3>Cameras<br>Collection</h3>
+                            <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title">
+                        <h3 class="title">Carrinho</h3>
+                        <div class="section-nav"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="products-tabs">
+                            <div id="tab2" class="tab-pane fade in active">
+                                <div class="products-slick" data-nav="#slick-nav-2">
+                                    <div th:each="entry : ${carrinho}">
+                                        <div class="product" style="margin: 20px">
+                                            <div class="product-img">
+                                                <img th:src="@{${entry.key.imageUrl}}" alt="Imagem do Produto">
+                                            </div>
+                                            <div class="product-body">
+                                                <h3 class="product-name"><a href="#" th:text="${entry.key.nome}">Nome</a></h3>
+                                                <h4 class="product-price" th:text="${entry.key.preco}">Preço</h4>
+                                                <div class="product-rating">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                                <div class="product-quantity">
+                                                    <span th:text="'Quantidade: ' + ${entry.value}"></span>
+                                                </div>
+                                            </div>
+                                            <div class="add-to-cart">
+                                                <a th:href="@{/publico/removerCarrinho/{id}(id=${entry.key.id})}">
+                                                    <button class="add-to-cart-btn">
+                                                        <i class="fa fa-shopping-cart"></i> Retirar item
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="slick-nav-2" class="products-slick-nav"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="section-title">
+            <div style="display: flex; justify-content: flex-end; margin-top: 40px">
+                <a th:href="@{/publico/finalizarCompra}">
+                    <button class="btn btn-block w-100 mt-4"
+                            style="background-color: #2082c5; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; width: 160px"
+                    >
+                        Finalizar Compra
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div th:insert="fragments/Footer.html :: #footer" style="margin-top: 100px"></div>
+
+    <!-- jQuery Plugins -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/slick.min.js"></script>
+    <script src="/js/nouislider.min.js"></script>
+    <script src="/js/jquery.zoom.min.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
